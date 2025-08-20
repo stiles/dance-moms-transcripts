@@ -124,7 +124,7 @@ With full‑season transcripts, you can explore:
 - Season arcs – compare word usage across seasons to see how storylines evolve
 
 ## Notes
-- Uses only caption text available to any subscriber
+- Uses only caption text available to a **subscriber**
 - Captions are segmented for streaming; the script merges them into continuous transcripts
-- Playlist tokens expire quickly, so download transcripts soon after capturing the HAR
-- Use is for research and personal analysis, not redistribution
+- Playlist tokens expire, so download transcripts soon after capturing the HAR
+- Use is for research and personal analysis, **not redistribution**
