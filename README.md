@@ -3,15 +3,16 @@
 ## About this project
 This project collects, cleans and analyzes transcripts of *Dance Moms* episodes streamed on Disney+. It has two parts:
 
-1. Transcript acquisition – capture closed caption VTT files from playback sessions, merge them and label by season and episode
-2. Transcript analysis – turn captions into structured text that you can search, count and compare
+1. **Transcript acquisition:** Capture closed caption VTT files from playback sessions, merge them and label by season and episode
+2. **Transcript analysis:** Turn captions into structured text that you can search, count and compare
 
 This project isn’t about redistributing video content — only studying the language used in the show. 
 
-## Why this matters
+## Why?
 Part of the goal is to show my daughter — who loves the show — that programming can be a tool for exploring the things she cares about. Subtitles become data, and data means questions can be tested: who gets mentioned most, when conflicts flare, how themes shift across a season.
 
 **Daughter:** "Holly *always* says Abby is unfair?"
+
 **Me:** "Let's check the numbers!"
 
 ## How acquisition works
@@ -66,7 +67,7 @@ data/processed/
 
 `s01_index.csv` lives in the season directory and includes episode number, playlist URL and IDs.
 
-## Analysis directions
+## Analysis possibilities
 With full‑season transcripts, you can explore:
 - Entity frequency – count mentions of each dancer, mom or instructor by name
 - Complaint tracking – identify utterances where moms criticize treatment of their daughters and quantify frequency
@@ -75,7 +76,7 @@ With full‑season transcripts, you can explore:
 - Season arcs – compare word usage across seasons to see how storylines evolve
 
 ## Episode metadata parsing
-There's also a script to parse episode tables saved from Wikipedia into structured data (json or csv).
+There's also a script to parse episode tables saved from Wikipedia into structured data (json or csv). (The html from the [Wikipedia page](https://en.wikipedia.org/wiki/List_of_Dance_Moms_episodes) should be stored in `data/metadata/episodes.html`). 
 
 ### Parse Wikipedia episodes HTML
 ```bash
