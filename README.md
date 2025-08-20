@@ -4,7 +4,7 @@
 This project collects, cleans and analyzes transcripts of *Dance Moms* episodes streamed on Disney+. It has two parts:
 
 1. **Transcript acquisition:** Capture closed caption VTT files from playback sessions, merge them and label by season and episode
-2. **Transcript analysis:** Turn captions into structured text that you can search, count and compare
+2. **Transcript analysis:** Turn captions into structured text that one can search, count and compare
 
 This project isn’t about redistributing video content — only studying the language used in the show. 
 
@@ -18,7 +18,7 @@ Part of the goal is to show my daughter — who loves the show — that programm
 ## How acquisition works
 Disney+ generates a temporary subtitle playlist (`.m3u8`) with short‑lived, signed URLs for `.vtt` segments per playback.
 
-You can capture a season as a HAR, then run a script that finds subtitle playlists, downloads the segments, merges them and writes one `.vtt` per episode. With `--text`, it also writes plain text.
+Capture a season as a HAR, then run a script that finds subtitle playlists, downloads the segments, merges them and writes one `.vtt` per episode. With `--text`, it also writes plain text.
 
 ### Capture steps
 1. Open Chrome DevTools → Network tab → enable Preserve log
@@ -31,7 +31,7 @@ You can capture a season as a HAR, then run a script that finds subtitle playlis
 python dump_transcripts.py data/raw/s01.har --out data/processed --text
 ```
 
-You can also run it without an argument to process all `*.har` files in `data/raw/` (or pass a directory):
+The script can also be run without an argument to process all `*.har` files in `data/raw/` (or pass a directory):
 ```bash
 python dump_transcripts.py --out data/processed --text
 # or
@@ -104,7 +104,7 @@ Output columns (varies by page):
 Footnotes and bracketed references are removed from cell text.
 
 ## Enrich indices with Wikipedia metadata
-After you have both parsed metadata and season indices, you can join them.
+After you have both parsed metadata and season indices, join them.
 
 ```bash
 python merge_metadata.py \
@@ -116,7 +116,7 @@ python merge_metadata.py \
 This writes `sxx_index_enriched.csv` next to each season index and a concatenated `episodes_index_enriched.csv` with columns like `title`, `original_air_date`, `overall_episode`, `season_title`.
 
 ## Analysis possibilities
-With full‑season transcripts, you can explore:
+With full‑season transcripts, the exploration can include:
 - Entity frequency – count mentions of each dancer, mom or instructor by name
 - Complaint tracking – identify utterances where moms criticize treatment of their daughters and quantify frequency
 - Theme trends – track motifs like competition prep, favoritism, conflicts, reconciliations
