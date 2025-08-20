@@ -31,6 +31,13 @@ You can capture a season as a HAR, then run a script that finds subtitle playlis
 python dump_transcripts.py data/raw/s01.har --out data/processed --text
 ```
 
+You can also run it without an argument to process all `*.har` files in `data/raw/` (or pass a directory):
+```bash
+python dump_transcripts.py --out data/processed --text
+# or
+python dump_transcripts.py data/raw/ --out data/processed --text
+```
+
 Flags:
 - `--out DIR`: output directory (default `data/processed`)
 - `--text`: also write plain text transcripts
@@ -67,22 +74,23 @@ data/processed/
 
 `s01_index.csv` lives in the season directory and includes episode number, playlist URL and IDs.
 
-## Analysis possibilities
-With full‑season transcripts, you can explore:
-- Entity frequency – count mentions of each dancer, mom or instructor by name
-- Complaint tracking – identify utterances where moms criticize treatment of their daughters and quantify frequency
-- Theme trends – track motifs like competition prep, favoritism, conflicts, reconciliations
-- Episode arcs – compare dialogue tone and focus between the beginning and end of an episode
-- Season arcs – compare word usage across seasons to see how storylines evolve
-
 ## Episode metadata parsing
-There's also a script to parse episode tables saved from Wikipedia into structured data (json or csv). (The html from the [Wikipedia page](https://en.wikipedia.org/wiki/List_of_Dance_Moms_episodes) should be stored in `data/metadata/episodes.html`). 
+The `parse_metadata.py` script fetches the episode tables from Wikipedia and writes clean metadata (json or csv). It can also parse a local HTML file if provided.
 
-### Parse Wikipedia episodes HTML
+Source: [List of Dance Moms episodes](https://en.wikipedia.org/wiki/List_of_Dance_Moms_episodes)
+
+### Fetch and parse from Wikipedia
 ```bash
-python parse_metadata.py data/metadata/episodes.html \
+python parse_metadata.py \
   --out data/metadata/episodes.json \
   --format json
+```
+
+### Optional: parse a saved HTML file instead
+```bash
+python parse_metadata.py data/metadata/episodes.html \
+  --out data/metadata/episodes.csv \
+  --format csv
 ```
 
 Output columns (varies by page):
@@ -94,6 +102,26 @@ Output columns (varies by page):
 - `production_code`, `notes`
 
 Footnotes and bracketed references are removed from cell text.
+
+## Enrich indices with Wikipedia metadata
+After you have both parsed metadata and season indices, you can join them.
+
+```bash
+python merge_metadata.py \
+  --episodes data/metadata/episodes.json \
+  --processed-root data/processed \
+  --out-overall data/processed/episodes_index_enriched.csv
+```
+
+This writes `sxx_index_enriched.csv` next to each season index and a concatenated `episodes_index_enriched.csv` with columns like `title`, `original_air_date`, `overall_episode`, `season_title`.
+
+## Analysis possibilities
+With full‑season transcripts, you can explore:
+- Entity frequency – count mentions of each dancer, mom or instructor by name
+- Complaint tracking – identify utterances where moms criticize treatment of their daughters and quantify frequency
+- Theme trends – track motifs like competition prep, favoritism, conflicts, reconciliations
+- Episode arcs – compare dialogue tone and focus between the beginning and end of an episode
+- Season arcs – compare word usage across seasons to see how storylines evolve
 
 ## Notes
 - Uses only caption text available to any subscriber

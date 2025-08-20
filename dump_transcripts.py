@@ -84,25 +84,17 @@ def vtt_to_text(vtt):
             out.append(re.sub(r"</?(i|b|u)>", "", line))
     return "\n".join(out).strip() + "\n"
 
-def main():
-    ap = argparse.ArgumentParser()
-    ap.add_argument("har")
-    ap.add_argument("--out", default="data/processed")
-    ap.add_argument("--lang", default="en", help="language hint; used only to prefer relevant playlists if present")
-    ap.add_argument("--text", action="store_true", help="also emit plain text")
-    ap.add_argument("--max-workers", type=int, default=16)
-    args = ap.parse_args()
-
-    os.makedirs(args.out, exist_ok=True)
-    season = parse_season_from_filename(args.har, default=1)
+def process_har(har_path: str, out_dir: str, lang: str, write_text: bool, max_workers: int) -> None:
+    os.makedirs(out_dir, exist_ok=True)
+    season = parse_season_from_filename(har_path, default=1)
     # Season-specific directories
-    season_dir = os.path.join(args.out, f"s{season:02d}")
+    season_dir = os.path.join(out_dir, f"s{season:02d}")
     vtt_dir = os.path.join(season_dir, "vtt")
     txt_dir = os.path.join(season_dir, "txt")
     os.makedirs(vtt_dir, exist_ok=True)
-    if args.text:
+    if write_text:
         os.makedirs(txt_dir, exist_ok=True)
-    har = load_har(args.har)
+    har = load_har(har_path)
 
     # 1) collect candidate playlists with timing and IDs
     candidates = []
@@ -123,7 +115,7 @@ def main():
         m = PSID_RE.search(url)
         if m: psid = m.group(1)
         is_sdh = "sdh" in url.lower()
-        lang_hit = args.lang and (f"_{args.lang.lower()}_" in url.lower() or f"/{args.lang.lower()}_" in url.lower())
+        lang_hit = bool(lang) and (f"_{lang.lower()}_" in url.lower() or f"/{lang.lower()}_" in url.lower())
         candidates.append({
             "url": url, "t0": t0, "uuid": uuid or f"nouuid:{url.rsplit('/',3)[0]}",
             "psid": psid or "nopsid", "is_sdh": is_sdh, "lang_hit": bool(lang_hit)
@@ -146,7 +138,7 @@ def main():
     # 3) order episodes by capture time
     chosen.sort(key=lambda x: x["t0"])
 
-    print(f"Found {len(chosen)} episode playlists (ordered by capture time).")
+    print(f"[{os.path.basename(har_path)}] Found {len(chosen)} episode playlists (ordered by capture time).")
 
     # 4) download, merge, write sequential names
     index_rows = []
@@ -169,7 +161,7 @@ def main():
                 vtts[i] = ""
                 print(f"  seg {i:05d} failed: {ex}", file=sys.stderr)
 
-        with cf.ThreadPoolExecutor(max_workers=args.max_workers) as ex:
+        with cf.ThreadPoolExecutor(max_workers=max_workers) as ex:
             ex.map(grab, enumerate(abs_urls))
 
         merged = merge_vtts(vtts)
@@ -180,7 +172,7 @@ def main():
         print(f"[{base}] wrote {vtt_path} ({len(merged):,} chars)   ({'SDH' if c['is_sdh'] else 'STD'})")
 
         txt_path = ""
-        if args.text:
+        if write_text:
             txt = vtt_to_text(merged)
             txt_path = os.path.join(txt_dir, f"{base}.txt")
             with open(txt_path, "w", encoding="utf-8") as f:
@@ -207,6 +199,39 @@ def main():
         for r in index_rows:
             w.writerow(r)
     print(f"Wrote {idx_path}")
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("har", nargs="?", help="HAR file or directory. If omitted, search data/raw for *.har")
+    ap.add_argument("--out", default="data/processed")
+    ap.add_argument("--lang", default="en", help="language hint; used only to prefer relevant playlists if present")
+    ap.add_argument("--text", action="store_true", help="also emit plain text")
+    ap.add_argument("--max-workers", type=int, default=16)
+    ap.add_argument("--raw-dir", default="data/raw", help="where to search for HAR files when no HAR is provided")
+    args = ap.parse_args()
+
+    # Gather HAR paths
+    har_paths: list[str] = []
+    if args.har:
+        if os.path.isdir(args.har):
+            har_paths = [os.path.join(args.har, n) for n in sorted(os.listdir(args.har)) if n.lower().endswith(".har")]
+        else:
+            har_paths = [args.har]
+    else:
+        if os.path.isdir(args.raw_dir):
+            har_paths = [os.path.join(args.raw_dir, n) for n in sorted(os.listdir(args.raw_dir)) if n.lower().endswith(".har")]
+    if not har_paths:
+        print("No HAR files found. Provide a path or place *.har under --raw-dir.", file=sys.stderr)
+        sys.exit(1)
+
+    for hp in har_paths:
+        try:
+            process_har(hp, args.out, args.lang, args.text, args.max_workers)
+        except SystemExit:
+            raise
+        except Exception as ex:
+            print(f"Failed processing {hp}: {ex}", file=sys.stderr)
 
 if __name__ == "__main__":
     main()

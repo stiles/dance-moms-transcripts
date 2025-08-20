@@ -1,17 +1,18 @@
 #!/usr/bin/env python3
 """Parse Wikipedia episodes tables into structured data.
 
-Reads an HTML file saved from Wikipedia that contains one or more
-episodes tables (typically classed as "wikiepisodetable" / "wikitable"),
-extracts rows, strips footnotes/references, and writes clean data.
+Fetches the Dance Moms episodes list from Wikipedia by default, parses one or
+more episode tables (classed like "wikiepisodetable" / "wikitable"), extracts
+rows, strips footnotes/references, and writes clean data (CSV or JSON).
 
-Default output is CSV to the given --out path. You can also request JSON.
+You can optionally provide a local HTML file path for offline parsing.
 
-Example:
-  python parse_wikipedia_episodes.py \
-    data/metadata/wikipedia_episodes_tables.html \
-    --out data/metadata/episodes.csv \
-    --format csv
+Examples:
+  # Fetch from Wikipedia and write JSON
+  python parse_metadata.py --out data/metadata/episodes.json --format json
+
+  # Parse a saved HTML file instead
+  python parse_metadata.py data/metadata/episodes.html --out data/metadata/episodes.csv --format csv
 """
 
 import argparse
@@ -27,6 +28,12 @@ try:
     from bs4 import BeautifulSoup
 except Exception as ex:  # pragma: no cover
     print("BeautifulSoup (bs4) is required: pip install beautifulsoup4", file=sys.stderr)
+    raise
+
+try:
+    import requests
+except Exception as ex:  # pragma: no cover
+    print("requests is required: pip install requests", file=sys.stderr)
     raise
 
 
@@ -232,13 +239,27 @@ def write_json(rows: List[Dict[str, str]], out_path: str) -> None:
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("html", default="data/metadata/episodes.html", help="path to saved Wikipedia HTML")
+    ap.add_argument("html", nargs="?", help="optional path to saved Wikipedia HTML (fallback to --url if omitted)")
+    ap.add_argument(
+        "--url",
+        default="https://en.wikipedia.org/wiki/List_of_Dance_Moms_episodes",
+        help="source URL to fetch when no HTML file is provided",
+    )
     ap.add_argument("--out", default="data/metadata/episodes.json", help="output file path")
     ap.add_argument("--format", choices=["csv", "json"], default="json", help="output format")
     args = ap.parse_args()
 
-    with open(args.html, "r", encoding="utf-8") as f:
-        soup = BeautifulSoup(f, "html.parser")
+    if args.html:
+        with open(args.html, "r", encoding="utf-8") as f:
+            soup = BeautifulSoup(f, "html.parser")
+    else:
+        try:
+            resp = requests.get(args.url, timeout=30)
+            resp.raise_for_status()
+        except Exception as ex:
+            print(f"Failed to fetch URL {args.url}: {ex}", file=sys.stderr)
+            sys.exit(1)
+        soup = BeautifulSoup(resp.text, "html.parser")
 
     rows = parse_tables(soup)
     if not rows:
