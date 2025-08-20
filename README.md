@@ -116,7 +116,7 @@ python merge_metadata.py \
 This writes `sxx_index_enriched.csv` next to each season index and a concatenated `episodes_index_enriched.csv` with columns like `title`, `original_air_date`, `overall_episode`, `season_title`.
 
 ## Collected so far: 
-- Seasons 1, 2
+- Seasons 1, 2, 3
 
 ## Analysis possibilities
 With full‑season transcripts, the exploration can include:
