@@ -1,0 +1,1012 @@
+{
+  "season": 2,
+  "episodes": 29,
+  "utterances": 28094,
+  "top_speakers": [
+    {
+      "speaker": "ABBY",
+      "count": 1024
+    },
+    {
+      "speaker": "CHRISTI",
+      "count": 357
+    },
+    {
+      "speaker": "KELLY",
+      "count": 311
+    },
+    {
+      "speaker": "SINGER",
+      "count": 311
+    },
+    {
+      "speaker": "ANNOUNCER",
+      "count": 234
+    },
+    {
+      "speaker": "MELISSA",
+      "count": 227
+    },
+    {
+      "speaker": "HOLLY",
+      "count": 192
+    },
+    {
+      "speaker": "JILL",
+      "count": 191
+    },
+    {
+      "speaker": "CATHY",
+      "count": 159
+    },
+    {
+      "speaker": "JEFF",
+      "count": 77
+    },
+    {
+      "speaker": "MADDIE",
+      "count": 74
+    },
+    {
+      "speaker": "WOMAN",
+      "count": 59
+    },
+    {
+      "speaker": "LESLEY",
+      "count": 58
+    },
+    {
+      "speaker": "CHLOE",
+      "count": 47
+    },
+    {
+      "speaker": "PAIGE",
+      "count": 36
+    },
+    {
+      "speaker": "MACKENZIE",
+      "count": 30
+    },
+    {
+      "speaker": "NIA",
+      "count": 25
+    },
+    {
+      "speaker": "BROOKE",
+      "count": 24
+    },
+    {
+      "speaker": "ALL",
+      "count": 21
+    },
+    {
+      "speaker": "KAYA",
+      "count": 20
+    },
+    {
+      "speaker": "ANNOUNCER 2",
+      "count": 17
+    },
+    {
+      "speaker": "KENDALL",
+      "count": 16
+    },
+    {
+      "speaker": "PRESENTER",
+      "count": 16
+    },
+    {
+      "speaker": "MAN",
+      "count": 15
+    },
+    {
+      "speaker": "GIRL",
+      "count": 12
+    },
+    {
+      "speaker": "DOCTOR",
+      "count": 11
+    },
+    {
+      "speaker": "JUDGE",
+      "count": 10
+    },
+    {
+      "speaker": "ANNOUNCER 1",
+      "count": 10
+    },
+    {
+      "speaker": "GIRLS",
+      "count": 9
+    },
+    {
+      "speaker": "MITCHELL",
+      "count": 8
+    },
+    {
+      "speaker": "DANCE MOM",
+      "count": 7
+    },
+    {
+      "speaker": "PAYTON",
+      "count": 7
+    },
+    {
+      "speaker": "CAROL",
+      "count": 7
+    },
+    {
+      "speaker": "PA",
+      "count": 6
+    },
+    {
+      "speaker": "ANNOUNCER 3",
+      "count": 5
+    },
+    {
+      "speaker": "LEIGH",
+      "count": 5
+    },
+    {
+      "speaker": "GIANNA",
+      "count": 5
+    },
+    {
+      "speaker": "COACH",
+      "count": 5
+    },
+    {
+      "speaker": "PEYTON",
+      "count": 5
+    },
+    {
+      "speaker": "SINGER 1",
+      "count": 5
+    },
+    {
+      "speaker": "MELLISA",
+      "count": 4
+    },
+    {
+      "speaker": "CHEER MOM",
+      "count": 3
+    },
+    {
+      "speaker": "RICH",
+      "count": 3
+    },
+    {
+      "speaker": "TAYLOR",
+      "count": 3
+    },
+    {
+      "speaker": "DAVIS",
+      "count": 3
+    },
+    {
+      "speaker": "COMPETITION DIRECTOR",
+      "count": 2
+    },
+    {
+      "speaker": "KIDS",
+      "count": 2
+    },
+    {
+      "speaker": "KID",
+      "count": 2
+    },
+    {
+      "speaker": "DANCE TEACHER",
+      "count": 2
+    },
+    {
+      "speaker": "NARRATOR",
+      "count": 2
+    }
+  ],
+  "top_keywords": [
+    {
+      "term": "my",
+      "count": 1537
+    },
+    {
+      "term": "dance",
+      "count": 1268
+    },
+    {
+      "term": "know",
+      "count": 1254
+    },
+    {
+      "term": "abby",
+      "count": 1225
+    },
+    {
+      "term": "what",
+      "count": 1207
+    },
+    {
+      "term": "me",
+      "count": 1167
+    },
+    {
+      "term": "all",
+      "count": 1135
+    },
+    {
+      "term": "think",
+      "count": 1042
+    },
+    {
+      "term": "want",
+      "count": 912
+    },
+    {
+      "term": "because",
+      "count": 831
+    },
+    {
+      "term": "she's",
+      "count": 798
+    },
+    {
+      "term": "really",
+      "count": 770
+    },
+    {
+      "term": "right",
+      "count": 730
+    },
+    {
+      "term": "that's",
+      "count": 664
+    },
+    {
+      "term": "there",
+      "count": 639
+    },
+    {
+      "term": "no",
+      "count": 639
+    },
+    {
+      "term": "here",
+      "count": 634
+    },
+    {
+      "term": "maddie",
+      "count": 633
+    },
+    {
+      "term": "girls",
+      "count": 570
+    },
+    {
+      "term": "number",
+      "count": 555
+    },
+    {
+      "term": "good",
+      "count": 553
+    },
+    {
+      "term": "solo",
+      "count": 548
+    },
+    {
+      "term": "oh",
+      "count": 522
+    },
+    {
+      "term": "need",
+      "count": 512
+    },
+    {
+      "term": "when",
+      "count": 500
+    },
+    {
+      "term": "chloe",
+      "count": 499
+    },
+    {
+      "term": "time",
+      "count": 475
+    },
+    {
+      "term": "group",
+      "count": 446
+    },
+    {
+      "term": "see",
+      "count": 439
+    },
+    {
+      "term": "well",
+      "count": 434
+    },
+    {
+      "term": "back",
+      "count": 428
+    },
+    {
+      "term": "now",
+      "count": 421
+    },
+    {
+      "term": "little",
+      "count": 420
+    },
+    {
+      "term": "okay",
+      "count": 420
+    },
+    {
+      "term": "kendall",
+      "count": 410
+    },
+    {
+      "term": "doing",
+      "count": 404
+    },
+    {
+      "term": "kids",
+      "count": 403
+    },
+    {
+      "term": "how",
+      "count": 399
+    },
+    {
+      "term": "paige",
+      "count": 394
+    },
+    {
+      "term": "week",
+      "count": 390
+    },
+    {
+      "term": "why",
+      "count": 381
+    },
+    {
+      "term": "let's",
+      "count": 376
+    },
+    {
+      "term": "jill",
+      "count": 347
+    },
+    {
+      "term": "nia",
+      "count": 330
+    },
+    {
+      "term": "top",
+      "count": 319
+    },
+    {
+      "term": "stage",
+      "count": 305
+    },
+    {
+      "term": "brooke",
+      "count": 294
+    },
+    {
+      "term": "competition",
+      "count": 293
+    },
+    {
+      "term": "very",
+      "count": 283
+    },
+    {
+      "term": "melissa",
+      "count": 282
+    },
+    {
+      "term": "more",
+      "count": 279
+    },
+    {
+      "term": "look",
+      "count": 274
+    },
+    {
+      "term": "pyramid",
+      "count": 268
+    },
+    {
+      "term": "kelly",
+      "count": 267
+    },
+    {
+      "term": "let",
+      "count": 266
+    },
+    {
+      "term": "cathy",
+      "count": 264
+    },
+    {
+      "term": "yeah",
+      "count": 264
+    },
+    {
+      "term": "take",
+      "count": 263
+    },
+    {
+      "term": "yes",
+      "count": 259
+    },
+    {
+      "term": "way",
+      "count": 257
+    },
+    {
+      "term": "something",
+      "count": 249
+    },
+    {
+      "term": "place",
+      "count": 247
+    },
+    {
+      "term": "who",
+      "count": 246
+    },
+    {
+      "term": "great",
+      "count": 242
+    },
+    {
+      "term": "moms",
+      "count": 241
+    },
+    {
+      "term": "tell",
+      "count": 241
+    },
+    {
+      "term": "kid",
+      "count": 240
+    },
+    {
+      "term": "lee",
+      "count": 239
+    },
+    {
+      "term": "lot",
+      "count": 231
+    },
+    {
+      "term": "put",
+      "count": 231
+    },
+    {
+      "term": "first",
+      "count": 230
+    },
+    {
+      "term": "doesn't",
+      "count": 226
+    },
+    {
+      "term": "again",
+      "count": 226
+    },
+    {
+      "term": "christi",
+      "count": 225
+    },
+    {
+      "term": "better",
+      "count": 225
+    },
+    {
+      "term": "everybody",
+      "count": 224
+    },
+    {
+      "term": "other",
+      "count": 223
+    },
+    {
+      "term": "never",
+      "count": 220
+    },
+    {
+      "term": "next",
+      "count": 214
+    },
+    {
+      "term": "some",
+      "count": 212
+    },
+    {
+      "term": "team",
+      "count": 205
+    },
+    {
+      "term": "even",
+      "count": 204
+    },
+    {
+      "term": "every",
+      "count": 197
+    },
+    {
+      "term": "daughter",
+      "count": 195
+    },
+    {
+      "term": "studio",
+      "count": 195
+    },
+    {
+      "term": "company",
+      "count": 194
+    },
+    {
+      "term": "win",
+      "count": 194
+    },
+    {
+      "term": "work",
+      "count": 193
+    },
+    {
+      "term": "too",
+      "count": 192
+    },
+    {
+      "term": "thought",
+      "count": 192
+    },
+    {
+      "term": "mean",
+      "count": 188
+    },
+    {
+      "term": "give",
+      "count": 184
+    },
+    {
+      "term": "where",
+      "count": 183
+    },
+    {
+      "term": "big",
+      "count": 183
+    },
+    {
+      "term": "mackenzie",
+      "count": 181
+    },
+    {
+      "term": "holly",
+      "count": 180
+    },
+    {
+      "term": "guys",
+      "count": 180
+    },
+    {
+      "term": "i've",
+      "count": 176
+    },
+    {
+      "term": "job",
+      "count": 175
+    },
+    {
+      "term": "always",
+      "count": 169
+    }
+  ],
+  "top_bigrams": [
+    {
+      "term": "all right",
+      "count": 268
+    },
+    {
+      "term": "know what",
+      "count": 248
+    },
+    {
+      "term": "abby lee",
+      "count": 238
+    },
+    {
+      "term": "lee dance",
+      "count": 177
+    },
+    {
+      "term": "dance company",
+      "count": 169
+    },
+    {
+      "term": "my daughter",
+      "count": 120
+    },
+    {
+      "term": "top pyramid",
+      "count": 118
+    },
+    {
+      "term": "right now",
+      "count": 115
+    },
+    {
+      "term": "that's what",
+      "count": 113
+    },
+    {
+      "term": "oh my",
+      "count": 100
+    },
+    {
+      "term": "group number",
+      "count": 96
+    },
+    {
+      "term": "my kids",
+      "count": 90
+    },
+    {
+      "term": "dance moms",
+      "count": 83
+    },
+    {
+      "term": "group dance",
+      "count": 82
+    },
+    {
+      "term": "my god",
+      "count": 79
+    },
+    {
+      "term": "little bit",
+      "count": 73
+    },
+    {
+      "term": "let me",
+      "count": 73
+    },
+    {
+      "term": "doing solo",
+      "count": 70
+    },
+    {
+      "term": "good job",
+      "count": 67
+    },
+    {
+      "term": "entry number",
+      "count": 66
+    },
+    {
+      "term": "candy apples",
+      "count": 64
+    },
+    {
+      "term": "my solo",
+      "count": 63
+    },
+    {
+      "term": "what doing",
+      "count": 61
+    },
+    {
+      "term": "my girls",
+      "count": 59
+    },
+    {
+      "term": "miss abby",
+      "count": 57
+    },
+    {
+      "term": "want see",
+      "count": 56
+    },
+    {
+      "term": "tell me",
+      "count": 53
+    },
+    {
+      "term": "solo week",
+      "count": 53
+    },
+    {
+      "term": "know how",
+      "count": 52
+    },
+    {
+      "term": "first place",
+      "count": 51
+    },
+    {
+      "term": "all time",
+      "count": 49
+    },
+    {
+      "term": "what want",
+      "count": 47
+    },
+    {
+      "term": "second place",
+      "count": 47
+    },
+    {
+      "term": "really good",
+      "count": 46
+    },
+    {
+      "term": "please welcome",
+      "count": 45
+    },
+    {
+      "term": "no no",
+      "count": 43
+    },
+    {
+      "term": "great job",
+      "count": 43
+    },
+    {
+      "term": "all know",
+      "count": 42
+    },
+    {
+      "term": "bottom pyramid",
+      "count": 42
+    },
+    {
+      "term": "everybody else",
+      "count": 42
+    },
+    {
+      "term": "think she's",
+      "count": 42
+    },
+    {
+      "term": "see what",
+      "count": 42
+    },
+    {
+      "term": "that's why",
+      "count": 42
+    },
+    {
+      "term": "la la",
+      "count": 41
+    },
+    {
+      "term": "what think",
+      "count": 40
+    },
+    {
+      "term": "oh oh",
+      "count": 40
+    },
+    {
+      "term": "dressing room",
+      "count": 39
+    },
+    {
+      "term": "right there",
+      "count": 38
+    },
+    {
+      "term": "told me",
+      "count": 38
+    },
+    {
+      "term": "years old",
+      "count": 36
+    },
+    {
+      "term": "know why",
+      "count": 36
+    },
+    {
+      "term": "last week",
+      "count": 36
+    },
+    {
+      "term": "because she's",
+      "count": 36
+    },
+    {
+      "term": "my kid",
+      "count": 35
+    },
+    {
+      "term": "dance floor",
+      "count": 34
+    },
+    {
+      "term": "third place",
+      "count": 34
+    },
+    {
+      "term": "right here",
+      "count": 34
+    },
+    {
+      "term": "number my",
+      "count": 34
+    },
+    {
+      "term": "girls let's",
+      "count": 33
+    },
+    {
+      "term": "really hard",
+      "count": 33
+    },
+    {
+      "term": "little girl",
+      "count": 33
+    },
+    {
+      "term": "each other",
+      "count": 33
+    },
+    {
+      "term": "what what",
+      "count": 33
+    },
+    {
+      "term": "give me",
+      "count": 32
+    },
+    {
+      "term": "really excited",
+      "count": 32
+    },
+    {
+      "term": "me my",
+      "count": 32
+    },
+    {
+      "term": "what happened",
+      "count": 32
+    },
+    {
+      "term": "my world",
+      "count": 31
+    },
+    {
+      "term": "every single",
+      "count": 31
+    },
+    {
+      "term": "really want",
+      "count": 31
+    },
+    {
+      "term": "my child",
+      "count": 31
+    },
+    {
+      "term": "living dance",
+      "count": 30
+    },
+    {
+      "term": "let's let's",
+      "count": 30
+    },
+    {
+      "term": "once again",
+      "count": 30
+    },
+    {
+      "term": "want my",
+      "count": 30
+    },
+    {
+      "term": "dance studio",
+      "count": 30
+    },
+    {
+      "term": "dance teacher",
+      "count": 29
+    },
+    {
+      "term": "act number",
+      "count": 29
+    },
+    {
+      "term": "joffrey ballet",
+      "count": 29
+    },
+    {
+      "term": "world my",
+      "count": 28
+    },
+    {
+      "term": "maddie chloe",
+      "count": 28
+    },
+    {
+      "term": "good enough",
+      "count": 28
+    },
+    {
+      "term": "want dance",
+      "count": 28
+    },
+    {
+      "term": "candy apple",
+      "count": 28
+    },
+    {
+      "term": "because my",
+      "count": 28
+    },
+    {
+      "term": "right let's",
+      "count": 28
+    },
+    {
+      "term": "my heart",
+      "count": 28
+    },
+    {
+      "term": "know know",
+      "count": 28
+    },
+    {
+      "term": "top junior",
+      "count": 28
+    },
+    {
+      "term": "drop dead",
+      "count": 28
+    },
+    {
+      "term": "dead diva",
+      "count": 28
+    },
+    {
+      "term": "floor my",
+      "count": 27
+    },
+    {
+      "term": "what abby",
+      "count": 27
+    },
+    {
+      "term": "because want",
+      "count": 27
+    },
+    {
+      "term": "last night",
+      "count": 27
+    },
+    {
+      "term": "okay okay",
+      "count": 27
+    },
+    {
+      "term": "oh yeah",
+      "count": 27
+    },
+    {
+      "term": "doesn't matter",
+      "count": 26
+    },
+    {
+      "term": "chloe maddie",
+      "count": 26
+    },
+    {
+      "term": "because think",
+      "count": 26
+    }
+  ],
+  "generated_summary": "Season 2 summary: 29 episodes, 28094 utterances. Most active speakers: ABBY (1024), CHRISTI (357), KELLY (311), SINGER (311), ANNOUNCER (234). Prominent keywords: my, dance, know, abby, what, me, all, think, want, because."
+}

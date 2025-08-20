@@ -128,6 +128,69 @@ Outputs per episode under `data/processed/sXX/clean/`:
 - `SxxExx.txt`: cleaned paragraphs
 - `SxxExx.sentences.txt`: one sentence per line
 
+## Structure transcripts (utterances with speakers and timing)
+Turn VTT cues into utterance‑level JSONL with start/end seconds and speaker tags parsed from ALL‑CAPS prefixes.
+
+```bash
+python structure_transcripts.py \
+  --processed-root data/processed \
+  --strip-notes
+```
+
+Outputs per episode under `data/processed/sXX/structured/`:
+- `SxxExx.jsonl`: one JSON object per utterance with fields: `season`, `episode`, `episode_id`, `start`, `end`, `speaker_raw`, `speaker`, `speaker_role`, `text`, `is_caption_note`
+
+## Aggregate speaker counts
+Aggregate utterance counts by season, episode and speaker into a single CSV.
+
+```bash
+python aggregate_speaker_counts.py \
+  --processed-root data/processed \
+  --out data/processed/speaker_counts.csv
+```
+
+## Unknown speakers report
+List frequent ALL‑CAPS tags not yet captured by `data/metadata/speakers.csv` so you can expand the map.
+
+```bash
+python report_unknown_speakers.py \
+  --processed-root data/processed
+```
+
+## Per‑season summaries
+Compute per‑season top speakers, keywords and bigrams, plus a short generated blurb.
+
+```bash
+python summarize.py \
+  --processed-root data/processed
+```
+
+Outputs under `data/processed/sXX/summaries/`:
+- `season_summary.json` and `season_summary.md`
+
+## End‑to‑end sequence for a new season
+When you add `data/raw/s0N.har`, run:
+
+```bash
+# 1) Dump transcripts (also writes s0N_index.csv)
+python dump_transcripts.py --out data/processed --text
+
+# 2) Clean transcripts (VTT → paragraphs and sentences)
+python clean_transcripts.py --season s0N --remove-notes
+
+# 3) Structure (utterances with speakers + timing)
+python structure_transcripts.py --season s0N --speaker-map data/metadata/speakers.csv --strip-notes
+
+# 4) Enrich indices with Wikipedia metadata
+python parse_metadata.py --out data/metadata/episodes.json --format json
+python merge_metadata.py --episodes data/metadata/episodes.json --processed-root data/processed --out-overall data/processed/episodes_index_enriched.csv
+
+# 5) Optional analyses
+python aggregate_speaker_counts.py --processed-root data/processed --out data/processed/speaker_counts.csv
+python report_unknown_speakers.py --processed-root data/processed > unknown_speakers.csv
+python summarize.py --processed-root data/processed --season s0N
+```
+
 ## Collected so far: 
 - Seasons 1, 2, 3
 

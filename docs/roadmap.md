@@ -47,7 +47,7 @@ Implementation:
   - `data/processed/sxx/clean/SxxExx.sentences.txt` (one sentence per line)
 
 ### 3) Structuring (utterance‑level data with speakers)
-- Status: pending
+- Status: done
 
 - Parse speakers from ALL‑CAPS prefixes like `HOLLY:` `ABBY:` `KELLY:` and variants (`HOLLY (whispers):` → `HOLLY`)
 - Keep non‑dialogue caption notes as `is_caption_note=true`
@@ -62,7 +62,7 @@ Data model (JSONL per episode):
 - Optional derived: `sentence_index`, `token_count`
 
 Implementation:
-- New script `structure_transcripts.py` that reads `.vtt` directly and writes:
+- New script `structure_transcripts.py` that reads `.vtt` directly and writes: (done)
   - `data/processed/sxx/structured/SxxExx.jsonl`
 
 ### 4) Metadata join (titles, air dates)
@@ -78,7 +78,7 @@ Implementation:
   - `data/processed/episodes_index_enriched.csv`
 
 ### 5) Speaker map and normalization
-- Status: pending
+- Status: in progress
 
 - Create `data/metadata/speakers.csv` with columns: `speaker`, `canonical`, `role`, `aliases`
 - Add normalization rules: slash‑joined names (`KELLY/CHRISTI`), parentheticals, unknowns
@@ -89,7 +89,7 @@ Implementation:
 - `report_unknown_speakers.py` to list frequencies of unmapped speakers
 
 ### 6) Summaries (optional)
-- Status: pending
+- Status: done (keyword/bigram + frequency‑based blurb)
 
 - Run a summarizer over each episode or scene to produce short, medium and long summaries
 - Store outputs with provenance and prompts to allow reproducibility
@@ -131,10 +131,12 @@ Implementation:
 
 1. Capture HAR per season under `data/raw/`
 2. Run `dump_transcripts.py --out data/processed --text` (auto‑scans `data/raw/`), or specify a single season: `dump_transcripts.py data/raw/sXX.har --out data/processed --text`
-3. Run `clean_transcripts.py sXX`
-4. Run `structure_transcripts.py sXX`
+3. Run `clean_transcripts.py --season sXX` (or all seasons)
+4. Run `structure_transcripts.py --season sXX --speaker-map data/metadata/speakers.csv`
 5. Run `merge_metadata.py`
-6. (Optional) Run `summarize.py --season XX`
+6. Run `aggregate_speaker_counts.py` (optional but useful)
+7. Run `report_unknown_speakers.py` to expand `speakers.csv` (optional)
+8. Run `summarize.py --season sXX` (optional)
 
 ## Definitions of done
 
