@@ -115,6 +115,19 @@ python merge_metadata.py \
 
 This writes `sxx_index_enriched.csv` next to each season index and a concatenated `episodes_index_enriched.csv` with columns like `title`, `original_air_date`, `overall_episode`, `season_title`.
 
+## Clean transcripts
+Reflow caption text into analysis‑ready forms and optionally remove bracketed notes like (cheering) or [music]. Defaults to reading from VTT.
+
+```bash
+python clean_transcripts.py \
+  --processed-root data/processed \
+  --remove-notes
+```
+
+Outputs per episode under `data/processed/sXX/clean/`:
+- `SxxExx.txt`: cleaned paragraphs
+- `SxxExx.sentences.txt`: one sentence per line
+
 ## Collected so far: 
 - Seasons 1, 2, 3
 

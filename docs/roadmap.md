@@ -20,19 +20,21 @@ This doc outlines concrete improvements to acquisition, cleaning, structure and 
 ## Milestones and tasks
 
 ### 1) Acquisition (all seasons)
+- Status: in progress
 
 - Add support to pass multiple HAR files in one run; name outputs by detected season (done: `dump_transcripts.py` now accepts a directory or auto-scans `data/raw/`)
 - Add a small helper to verify episode counts per season against metadata
-- Write a combined repository‑level `episodes_index.csv` that concatenates all `sxx_index.csv`
+- Write a combined repository‑level `episodes_index.csv` that concatenates all `sxx_index.csv` (done: written as `episodes_index_enriched.csv`)
 - Save fetch logs alongside outputs to help retry failed segments
 - Optional: support re‑hydrating `.txt` from `.vtt` later so `--text` isn’t required during capture
 
 Deliverables:
 - `data/processed/s01..s08/{vtt,txt}/SxxExx.*`
 - `data/processed/sxx/sxx_index.csv` for each season
-- `data/processed/episodes_index.csv` (all seasons)
+- `data/processed/episodes_index.csv` (all seasons) (done as enriched: `data/processed/episodes_index_enriched.csv`)
 
 ### 2) Cleaning (sentence and token normalization)
+- Status: done
 
 - Normalize quotes, dashes, ellipses, stray HTML tags from captions
 - Remove hearing‑impaired cues in brackets where desired (e.g., “(cheering)”) but keep a flag if retained
@@ -40,11 +42,12 @@ Deliverables:
 - De‑duplicate repeated lines across segment joins
 
 Implementation:
-- New script `clean_transcripts.py` that reads `SxxExx.vtt`, applies rules, and writes:
+- New script `clean_transcripts.py` that reads `SxxExx.vtt`, applies rules, and writes: (done)
   - `data/processed/sxx/clean/SxxExx.txt` (paragraph form)
   - `data/processed/sxx/clean/SxxExx.sentences.txt` (one sentence per line)
 
 ### 3) Structuring (utterance‑level data with speakers)
+- Status: pending
 
 - Parse speakers from ALL‑CAPS prefixes like `HOLLY:` `ABBY:` `KELLY:` and variants (`HOLLY (whispers):` → `HOLLY`)
 - Keep non‑dialogue caption notes as `is_caption_note=true`
@@ -63,9 +66,10 @@ Implementation:
   - `data/processed/sxx/structured/SxxExx.jsonl`
 
 ### 4) Metadata join (titles, air dates)
+- Status: done (basic); specials matching pending
 
 - Join `data/metadata/episodes.json` to each season’s `sxx_index.csv` on `(season, episode)`
-- Handle specials where `episode_in_season` is `-` by best‑effort matching (title or overall number) and mark `is_special=true`
+- Handle specials where `episode_in_season` is `-` by best‑effort matching (title or overall number) and mark `is_special=true` (pending)
 - Emit enriched indices with `title`, `original_air_date`, `overall_episode`, `notes`
 
 Implementation:
@@ -74,6 +78,7 @@ Implementation:
   - `data/processed/episodes_index_enriched.csv`
 
 ### 5) Speaker map and normalization
+- Status: pending
 
 - Create `data/metadata/speakers.csv` with columns: `speaker`, `canonical`, `role`, `aliases`
 - Add normalization rules: slash‑joined names (`KELLY/CHRISTI`), parentheticals, unknowns
@@ -84,6 +89,7 @@ Implementation:
 - `report_unknown_speakers.py` to list frequencies of unmapped speakers
 
 ### 6) Summaries (optional)
+- Status: pending
 
 - Run a summarizer over each episode or scene to produce short, medium and long summaries
 - Store outputs with provenance and prompts to allow reproducibility
@@ -95,6 +101,7 @@ Implementation:
 - Caching layer (hash of input + params) to avoid re‑runs
 
 ### 7) Analysis datasets and simple tooling
+- Status: pending
 
 - Build aggregated CSVs for quick analysis:
   - `utterances.csv` (all seasons) with normalized speakers
@@ -106,6 +113,7 @@ Implementation:
   - Theme trendlines over time
 
 ### 8) Packaging and repo hygiene
+- Status: pending
 
 - Add `requirements.txt` and pin minimal versions (`requests`, `bs4`, `pandas`, `regex`)
 - Add `Makefile` targets (`make s01`, `make clean`, `make structure`, `make enrich`)
@@ -122,7 +130,7 @@ Implementation:
 ## Quick execution outline
 
 1. Capture HAR per season under `data/raw/`
-2. Run `dump_transcripts.py data/raw/sXX.har --out data/processed --text`
+2. Run `dump_transcripts.py --out data/processed --text` (auto‑scans `data/raw/`), or specify a single season: `dump_transcripts.py data/raw/sXX.har --out data/processed --text`
 3. Run `clean_transcripts.py sXX`
 4. Run `structure_transcripts.py sXX`
 5. Run `merge_metadata.py`
